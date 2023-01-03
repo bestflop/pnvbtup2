@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 from base64 import standard_b64encode, b64decode
 from playwright.sync_api import Playwright, sync_playwright, expect
 
-from bot import LOGGER, config_dict
+from bot import LOGGER, config_dict, CRYPT, FSMAIL, FSPASS, 
 from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot.helper.ext_utils.bot_utils import is_gdtot_link, is_udrive_link, is_sharer_link, is_sharedrive_link, is_filepress_link
 from bot.helper.ext_utils.exceptions import DirectDownloadLinkException
@@ -39,6 +39,12 @@ def direct_link_generator(link: str):
     if 'youtube.com' in link or 'youtu.be' in link:
         raise DirectDownloadLinkException(
             f"ERROR: Use /{BotCommands.WatchCommand} to mirror Youtube link\nUse /{BotCommands.ZipWatchCommand} to make zip of Youtube playlist")
+    elif 'fshare.vn/file' in link in link:
+        return fshare(link)    
+    elif '4share.vn/f/' in link in link:
+        return fourshare(link)
+    if 'fshare.vn/folder' in link or '4share.vn/d/' in link:
+        raise DirectDownloadLinkException('ERROR: The link you entered is wrong!')        
     elif 'zippyshare.com' in link:
         return zippy_share(link)
     elif 'yadi.sk' in link or 'disk.yandex.com' in link:
@@ -102,6 +108,81 @@ def direct_link_generator(link: str):
     else:
         raise DirectDownloadLinkException(
             f'No Direct link function found for {link}')
+def fshare(url: str) -> str:
+    load = {
+    "user_email": FSMAIL,
+    "password": FSPASS,
+    "app_key": "dMnqMMZMUnN5YpvKENaEhdQQ5jxDqddt"
+  }
+    header = {
+      
+      "content-type": "application/json",
+      #"Fshare-User-Agent": "botfshare-KH6S9A",
+     "User-Agent": "botfshare-KH6S9A",
+       "Pragma": "no-cache",
+      "Accept": "*/*"
+  }
+    
+      
+
+    r1 = rpost('https://api.fshare.vn/api/user/login',
+                   json=load, headers=header)
+    res1 = r1.json()
+    msg = res1['msg']
+    print(msg)
+    
+    if 'Login successfully!' in r1.text:
+      token = res1['token']
+      session_id = res1['session_id']
+      load1 = {
+      "url": url,
+      "password": "",
+      "token": token,
+      "zipflag": "0"
+    }
+      header1 = {
+      
+      "content-type": "application/json",
+      "Fshare-User-Agent": "botfshare-KH6S9A",
+      "User-Agent": "botfshare-KH6S9A",
+       "Pragma": "no-cache",
+      "Accept": "*/*",
+      "Cookie": "session_id="+session_id
+  }
+      r2 = rpost('https://api.fshare.vn/api/session/download',
+                    json=load1, headers=header1)
+      res2 = r2.json()
+      link = res2['location']
+      r3 = rget('https://api.fshare.vn/api/user/logout', headers=header1)
+      return link
+    if 'Please change your password to continue using the service'in r1.text:
+      raise DirectDownloadLinkException('ERROR: Failed to generate Direct Link from 1fichier!')  
+    else:  
+      raise DirectDownloadLinkException("ERROR: 1fichier is on a limit. Please wait a few minutes/hour.")
+def fourshare(url: str) -> str:
+    fileid =  url.split('https://4share.vn/f/')[1]
+    header = {
+            "accesstoken01": TOKENBONSHARE,
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+            "content-type": "application/x-www-form-urlencoded",
+            "accept-Language": "en-GB,en;q=0.9,en-US;q=0.8"
+
+    } 
+    load = {
+    "file_id": fileid
+  }
+
+    r1 = rpost('https://api.4share.vn/api/v1/?cmd=get_download_link',
+                  data=load, headers=header)
+    res1 = r1.json()
+    if 'download_link' in r1.text:
+      link = res1['payload']['download_link']
+      return link
+    if 'Xin loi, ban da Download qua'in r1.text:
+      raise DirectDownloadLinkException('ERROR: 1fichier is on a limit. Please wait a few minutes/hour.')  
+    if 'Not valid file_id' in r1.text:  
+      raise DirectDownloadLinkException("ERROR: The link you entered is wrong!")         
 
 
 def rock(url: str) -> str:
