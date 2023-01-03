@@ -11,7 +11,9 @@ dnspython
 feedparser
 flask
 gc-python-utils
-git+https://github.com/SilentDemonSD/cinemagoer
+cinemagoer
+markdown
+playwright
 git+https://github.com/rajanvibes/required01
 git+https://github.com/rajanvibes/required02
 git+https://github.com/rajanvibes/required03
