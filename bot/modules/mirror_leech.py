@@ -48,8 +48,8 @@ def _mirror_leech(bot, message, isZip=False, extract=False, isQbit=False, isLeec
             b_uname = bot_d.username
             uname = f'<a href="tg://user?id={message.from_user.id}">{message.from_user.first_name}</a>'
             botstart = f"http://t.me/{b_uname}"
-            buttons.buildbutton("Click Here to Start Me", f"{botstart}")
-            startwarn = f"Dear {uname},\n\n<b>I found that you haven't started me in PM (Private Chat) yet.</b>\n\n" \
+            buttons.buildbutton("Click vào đây để start với bot", f"{botstart}")
+            startwarn = f"Dear {uname},\n\n<b>Bạn phải nhắn tin với bot bằng lệnh /start để bot hoạt động trong group nhé.</b>\n\n" \
                         f"From now on i will give link and leeched files in PM and log channel only"
             reply_message = sendMessage(startwarn, bot, message, buttons.build_menu(2))
             Thread(target=auto_delete_message, args=(bot, message, reply_message)).start()
