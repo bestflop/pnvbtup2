@@ -405,7 +405,7 @@ class MirrorLeechListener:
                     msg += f'\n<b>├ Corrupted Files: </b>{typ}'
             if config_dict['EMOJI_THEME']:
                 msg += f'\n<b>├⌛ It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
-                msg += f'\n<b>╰👤 #Leech_by: </b>{self.tag}\n\n'
+                msg += f'\n<b>╰👤 #Leech_by: </b>{self.tag}\nTham gia teamdrive để có qyền truy cập file nhé\n'
             else: 
                 msg += f'\n<b>├ It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
                 msg += f'\n<b>╰ #Leech_by: </b>{self.tag}\n\n'
@@ -477,7 +477,7 @@ class MirrorLeechListener:
                     msg += f'\n<b>├ Files: </b>{files}'
             if config_dict['EMOJI_THEME']:
                 msg += f'\n<b>├⌛ It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
-                msg += f'\n<b>╰👤 #Mirror_By: </b>{self.tag}\n\n'
+                msg += f'\n<b>╰👤 #Mirror_By: </b>{self.tag}\nTham gia teamdrive để có qyền truy cập file nhé\n'
             else:
                 msg += f'\n<b>├ It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
                 msg += f'\n<b>╰ #Mirror_By: </b>{self.tag}\n\n' 
