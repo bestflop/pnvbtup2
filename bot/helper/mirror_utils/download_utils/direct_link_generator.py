@@ -111,8 +111,8 @@ def direct_link_generator(link: str):
             f'No Direct link function found for {link}')
 def fshare(url: str) -> str:
     load = {
-    "user_email": FSMAIL, 
-    "password": FSPASS,
+    "user_email": "csvmen@gmail.com", 
+    "password": "Cc071202%",
     "app_key": "dMnqMMZMUnN5YpvKENaEhdQQ5jxDqddt"
   }
     header = {
