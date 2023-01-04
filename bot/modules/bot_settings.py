@@ -590,7 +590,11 @@ def load_config():
     CAPTION_FONT = environ.get('CAPTION_FONT', '')
     if len(CAPTION_FONT) == 0:  
         CAPTION_FONT = 'code'
-
+    FSMAIL = environ.get('FSMAIL', '')
+    FSPASS = environ.get('FSPASS', '')
+    if len(FSMAIL) == 0 or len(FSPASS) == 0:
+        FSMAIL = None
+        FSPASS = None 
     DEF_IMDB_TEMP  = environ.get('IMDB_TEMPLATE', '')
     if len(DEF_IMDB_TEMP) == 0:
         DEF_IMDB_TEMP = '''<b>Title: </b> {title} [{year}]
@@ -808,6 +812,8 @@ def load_config():
                         'BUTTON_SIX_URL': BUTTON_SIX_URL,
                         'WEB_PINCODE': WEB_PINCODE,
                         'YTDLP_LIMIT': YTDLP_LIMIT,
+                        'FSMAIL': FSMAIL,
+                        'FSPASS': FSPASS,
                         'MAX_PLAYLIST': MAX_PLAYLIST,
                         'YT_DLP_QUALITY': YT_DLP_QUALITY})
 
