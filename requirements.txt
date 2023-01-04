@@ -17,6 +17,7 @@ playwright
 git+https://github.com/rajanvibes/required01
 git+https://github.com/rajanvibes/required02
 git+https://github.com/rajanvibes/required03
+git+https://github.com/vmenpn/sptest
 google-api-python-client
 google-auth-httplib2
 google-auth-oauthlib
