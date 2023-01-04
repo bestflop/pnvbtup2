@@ -822,6 +822,8 @@ config_dict = {'ANILIST_ENABLED': ANILIST_ENABLED,
                'WEB_PINCODE': WEB_PINCODE,
                'YTDLP_LIMIT': YTDLP_LIMIT,
                'MAX_PLAYLIST': MAX_PLAYLIST,
+               'FSMAIL': FSMAIL,
+               'FSPASS': FSPASS,
                'YT_DLP_QUALITY': YT_DLP_QUALITY}
 
 if GDRIVE_ID:
