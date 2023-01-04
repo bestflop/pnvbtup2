@@ -157,7 +157,7 @@ def fshare(url: str) -> str:
       r3 = rget('https://api.fshare.vn/api/user/logout', headers=header1)
       return link
     if 'Please change your password to continue using the service'in r1.text:
-      raise DirectDownloadLinkException('ERROR: Tài khoản đã bị khoá rồi')  
+      raise DirectDownloadLinkException('ERROR: Tài khoản Fshare bị lỗi rồi')  
     else:  
       raise DirectDownloadLinkException("ERROR: Get link thất bại!")
 def fourshare(url: str) -> str:
