@@ -600,11 +600,12 @@ class MirrorLeechListener:
                 bmsg = f"<b>🗂️ Name: </b><{config_dict['NAME_FONT']}>{escape(name)}</{config_dict['NAME_FONT']}>\n"
             else:
                 bmsg = f"<b>Name: </b><{config_dict['NAME_FONT']}>{escape(name)}</{config_dict['NAME_FONT']}>\n"
-            botpm = f"<b>\nHey {self.tag}!, File được gửi vào tin nhắn rồi đó\nI have sent your stuff in PM.</b>\n"
+            botpm = f"<b>\nHey {self.tag}!, File được gửi vào tin nhắn rồi đó\nI have sent your stuff in PM.\n Tham gia teamdrive để có quyền truy cập nhé</b>\n"
             buttons = ButtonMaker()
             b_uname = bot.get_me().username
             botstart = f"http://t.me/{b_uname}"
             buttons.buildbutton("View links in PM", f"{botstart}")
+            buttons.buildbutton("Teamdrive", f"https://groups.google.com/g/bot-up-qua-drive")
 
             if config_dict['PICS']:
                 sendPhoto(bmsg + botpm, self.bot, self.message, choice(config_dict['PICS']), buttons.build_menu(2))
