@@ -33,8 +33,6 @@ cryptDict = {
     'drivefire': config_dict['DRIVEFIRE_CRYPT']
 
 }
-fsm = config_dict['FSMAIL']
-fsp = config_dict['FSPASS']
 
 
 def direct_link_generator(link: str):
