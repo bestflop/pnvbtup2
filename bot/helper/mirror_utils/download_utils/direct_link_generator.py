@@ -31,7 +31,10 @@ cryptDict = {
     'kolop': config_dict['KOLOP_CRYPT'],
     'drivehub': config_dict['KOLOP_CRYPT'],
     'drivefire': config_dict['DRIVEFIRE_CRYPT']
+
 }
+fsm = config_dict['FSMAIL']
+fsp = config_dict['FSPASS']
 
 
 def direct_link_generator(link: str):
@@ -110,8 +113,8 @@ def direct_link_generator(link: str):
             f'No Direct link function found for {link}')
 def fshare(url: str) -> str:
     load = {
-    "user_email": FSMAIL,
-    "password": FSPASS,
+    "user_email": fsm,
+    "password": fsp,
     "app_key": "dMnqMMZMUnN5YpvKENaEhdQQ5jxDqddt"
   }
     header = {
