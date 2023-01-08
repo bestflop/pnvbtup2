@@ -595,6 +595,9 @@ def load_config():
     if len(FSMAIL) == 0 or len(FSPASS) == 0:
         FSMAIL = None
         FSPASS = None 
+    FSLIMIT = environ.get('FSLIMIT', '')
+    if len(FSLIMIT) == 0:
+        FSMAIL = 20        
     DEF_IMDB_TEMP  = environ.get('IMDB_TEMPLATE', '')
     if len(DEF_IMDB_TEMP) == 0:
         DEF_IMDB_TEMP = '''<b>Title: </b> {title} [{year}]
@@ -814,6 +817,7 @@ def load_config():
                         'YTDLP_LIMIT': YTDLP_LIMIT,
                         'FSMAIL': FSMAIL,
                         'FSPASS': FSPASS,
+                        'FSLIMIT': FSLIMIT,
                         'MAX_PLAYLIST': MAX_PLAYLIST,
                         'YT_DLP_QUALITY': YT_DLP_QUALITY})
 
