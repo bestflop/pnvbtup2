@@ -127,7 +127,7 @@ def fshare(url: str) -> str:
     dl3 = float(dl3)
     print(dl3)
     if "GB" in dl2:
-     if dl3 > FSLIMIT:
+     if int(dl3) > int(FSLIMIT):
       raise DirectDownloadLinkException(f'ERROR: Chỉ được phép tải File dưới {FSLIMIT} GB')  
      else:
       load = {
