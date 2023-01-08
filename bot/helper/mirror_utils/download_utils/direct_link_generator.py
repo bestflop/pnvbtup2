@@ -128,7 +128,7 @@ def fshare(url: str) -> str:
     print(dl3)
     if "GB" in dl2:
      if dl3 > FSLIMIT:
-      raise DirectDownloadLinkException('ERROR: Chỉ được phép tải File dưới 20 GB')  
+      raise DirectDownloadLinkException(f'ERROR: Chỉ được phép tải File dưới {FSLIMIT} GB')  
      else:
       load = {
     "user_email": FSMAIL, 
