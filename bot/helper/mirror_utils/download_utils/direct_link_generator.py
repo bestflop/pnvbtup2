@@ -110,7 +110,7 @@ def direct_link_generator(link: str):
         raise DirectDownloadLinkException(
             f'No Direct link function found for {link}')
 def fshare(url: str) -> str:
-    r0 = ret(f'{url}')
+    r0 = rget(f'{url}')
     status = r0
     soup = BeautifulSoup(r0.text, 'html.parser')
     if not "full-width tool-tip btn-tablet btn-tablet btn_download_vip" in r0.text:
