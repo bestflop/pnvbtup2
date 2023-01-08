@@ -691,7 +691,9 @@ if len(FSMAIL) == 0 or len(FSPASS) == 0:
 TOKENBONSHARE = environ.get('TOKENBONSHARE', '')
 if len(TOKENBONSHARE) == 0:
     TOKENBONSHARE = None      
-
+FSLIMIT = environ.get('FSLIMIT', '')
+if len(FSLIMIT) == 0:
+    FSLIMIT = 20   
 
 config_dict = {'ANILIST_ENABLED': ANILIST_ENABLED,
                'AS_DOCUMENT': AS_DOCUMENT,
