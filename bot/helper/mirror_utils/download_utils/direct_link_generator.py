@@ -45,7 +45,7 @@ def direct_link_generator(link: str):
     elif '4share.vn/f/' in link in link:
         return fourshare(link)
     if 'fshare.vn/folder' in link or '4share.vn/d/' in link:
-        raise DirectDownloadLinkException('ERROR: The link you entered is wrong!')        
+        raise DirectDownloadLinkException('ERROR: Không hỗ trợ Folder!')        
     elif 'zippyshare.com' in link:
         return zippy_share(link)
     elif 'yadi.sk' in link or 'disk.yandex.com' in link:
@@ -251,11 +251,12 @@ def fourshare(url: str) -> str:
     res1 = r1.json()
     if 'download_link' in r1.text:
       link = res1['payload']['download_link']
+      print(link)
       return link
     if 'Xin loi, ban da Download qua'in r1.text:
-      raise DirectDownloadLinkException('ERROR: 1fichier is on a limit. Please wait a few minutes/hour.')  
+      raise DirectDownloadLinkException('ERROR: Hết dung lượng rồi. 0h quay lại.')  
     if 'Not valid file_id' in r1.text:  
-      raise DirectDownloadLinkException("ERROR: The link you entered is wrong!")         
+      raise DirectDownloadLinkException("ERROR: FILE ID CHƯA ĐÚNG!Nếu có dấu / ở cuối thì bỏ đi")         
 
 
 def rock(url: str) -> str:
