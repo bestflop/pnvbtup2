@@ -604,7 +604,7 @@ class MirrorLeechListener:
             buttons = ButtonMaker()
             b_uname = bot.get_me().username
             botstart = f"http://t.me/{b_uname}"
-            buttons.buildbutton("View links in PM", f"{botstart}")
+            buttons.buildbutton("⚡ Index Link", share_url)
             buttons.buildbutton("Teamdrive", f"https://groups.google.com/g/bot-up-qua-drive")
 
             if config_dict['PICS']:
