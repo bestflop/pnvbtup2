@@ -598,9 +598,19 @@ class MirrorLeechListener:
         if BOT_PM_X and self.message.chat.type != 'private':
             if config_dict['EMOJI_THEME']:
                 bmsg = f"<b>🗂️ Name: </b><{config_dict['NAME_FONT']}>{escape(name)}</{config_dict['NAME_FONT']}>\n"
+                bmsg += f'\n<b>├📦 Type: </b>{typ}'
+                bmsg += f'\n<b>├🗃️ SubFolders: </b>{folders}'
+                bmsg += f'\n<b>├🗂️ Files: </b>{files}'
+                bmsg += f'\n<b>├⌛ It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
+                bmsg += f'\n<b>╰👤 #Mirror_By: </b>{self.tag}\nTham gia teamdrive để có qyền truy cập file nhé\n'
             else:
                 bmsg = f"<b>Name: </b><{config_dict['NAME_FONT']}>{escape(name)}</{config_dict['NAME_FONT']}>\n"
-            botpm = f"<b>\nHey {self.tag}!, File được gửi vào tin nhắn rồi đó\nI have sent your stuff in PM.\n Tham gia teamdrive để có quyền truy cập nhé</b>\n"
+                bmsg += f'\n<b>├📦 Type: </b>{typ}'
+                bmsg += f'\n<b>├🗃️ SubFolders: </b>{folders}'
+                bmsg += f'\n<b>├🗂️ Files: </b>{files}'
+                bmsg += f'\n<b>├⌛ It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
+                bmsg += f'\n<b>╰👤 #Mirror_By: </b>{self.tag}\nTham gia teamdrive để có qyền truy cập file nhé\n'
+            #botpm = f"<b>\nHey {self.tag}!, File được gửi vào tin nhắn rồi đó\nI have sent your stuff in PM.\n Tham gia teamdrive để có quyền truy cập nhé</b>\n"
             buttons = ButtonMaker()
             b_uname = bot.get_me().username
             botstart = f"http://t.me/{b_uname}"
