@@ -178,6 +178,8 @@ def fshare(url: str) -> str:
         return link
       if 'Please change your password to continue using the service'in r1.text:
         raise DirectDownloadLinkException('ERROR: Tài khoản Fshare bị lỗi rồi')  
+      if 'Application for vip accounts only'in r1.text:
+        raise DirectDownloadLinkException('ERROR: Tài khoản hết vip rồi')        
       else:  
         raise DirectDownloadLinkException("ERROR: Get link thất bại!")      
     if "MB" or "KB" in dl2:
@@ -228,7 +230,9 @@ def fshare(url: str) -> str:
        r3 = rget('https://api.fshare.vn/api/user/logout', headers=header1)
        return link
      if 'Please change your password to continue using the service'in r1.text:
-       raise DirectDownloadLinkException('ERROR: Tài khoản Fshare bị lỗi rồi')  
+       raise DirectDownloadLinkException('ERROR: Tài khoản Fshare bị lỗi rồi') 
+     if 'Application for vip accounts only'in r1.text:
+       raise DirectDownloadLinkException('ERROR: Tài khoản hết vip rồi')      
      else:  
        raise DirectDownloadLinkException("ERROR: Get link thất bại!")       
      
